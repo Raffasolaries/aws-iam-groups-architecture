@@ -15,9 +15,14 @@ variable "org_name" {
 }
 
 variable "org_units" {
- description = "Organization Units and Children"
+ description = "Organization Units"
+ type = list
+}
+
+variable "org_subunits" {
+ description = "Organization Sub Units"
  type = list(object({
-  main = string
-  children = list(string)
+  name = string
+  child = string
  }))
 }
