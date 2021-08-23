@@ -9,20 +9,25 @@ variable "profile" {
  type = string
 }
 
-variable "org_name" {
- description = "Organization Name"
- type = string
-}
-
-variable "org_units" {
- description = "Organization Units"
+variable "iam_groups" {
+ description = "AWS User groups"
  type = list
 }
 
-variable "org_subunits" {
- description = "Organization Sub Units"
- type = list(object({
-  name = string
-  child = string
- }))
-}
+// variable "org_subunits" {
+//  description = "Organization Sub Units"
+//  type = list(object({
+//   name = string
+//   child = string
+//  }))
+// }
+
+// variable "org_accounts" {
+//  description = "Organization accounts"
+//  type = list(object({
+//   name = string
+//   email = string
+//   unit = string
+//   subunit = string
+//  }))
+// } 
