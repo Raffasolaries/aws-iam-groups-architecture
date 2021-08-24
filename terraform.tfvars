@@ -13,7 +13,7 @@ iam_groups = [{
  "policies": []
 }, {
  "name": "DevelopReadOnly",
- "policies": []
+ "policies": ["arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess","arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess"]
 }, {
  "name": "SupportAdmin",
  "policies": []
@@ -46,15 +46,44 @@ iam_policies = [{
    "Resource": "*"
   }]
  }
+}, {
+ "name": "ContentEdit",
+ "association": "ContentEdit",
+ "policy": {
+  "Version": "2012-10-17",
+  "Statement": [{
+   "Effect": "Allow",
+   "Action": [
+    "s3:*",
+    "dynamodb:*"
+   ],
+   "Resource": "*"
+  }]
+ }
+}, {
+ "name": "DevelopReadOnly",
+ "association": "DevelopReadOnly",
+ "policy": {
+  "Version": "2012-10-17",
+  "Statement": [{
+   "Effect": "Allow",
+   "Action": [
+    "s3:Get*",
+    "s3:List*",
+    "route53:Get*",
+    "route53:List*",
+    "route53:TestDNSAnswer",
+    "logs:describeExportTasks",
+    "logs:describeLogGroups",
+    "logs:describeLogStreams",
+    "logs:describeMetricFilters",
+    "logs:describeQueryDefinitions",
+    "logs:describeSubscriptionFilters",
+    "logs:filterLogEvents",
+    "logs:getLogEvents",
+    "logs:testMetricFilter"
+   ],
+   "Resource": "*"
+  }]
+ }
 }]
-// org_accounts = [{
-//  "name": "LucaTavecchia",
-//  "email": "lt@tantosvago.it",
-//  "unit": "Admin",
-//  "subunit": ""
-// }, {
-//  "name": "RaffaeleSollecito",
-//  "email": "rs@tantosvago.it",
-//  "unit": "Admin",
-//  "subunit": ""
-// }]
