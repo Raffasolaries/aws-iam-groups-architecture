@@ -13,13 +13,13 @@ iam_groups = [{
  "policies": []
 }, {
  "name": "DevelopReadOnly",
- "policies": ["arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess","arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess"]
+ "policies": ["arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess","arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess","arn:aws:iam::aws:policy/CloudWatchEventsReadOnlyAccess"]
 }, {
  "name": "SupportAdmin",
  "policies": []
 }, {
  "name": "SupportReadOnly",
- "policies": []
+ "policies": ["arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess","arn:aws:iam::aws:policy/CloudWatchEventsReadOnlyAccess"]
 }, {
  "name": "ContentEdit",
  "policies": []
@@ -35,13 +35,16 @@ iam_policies = [{
     "s3:*",
     "route53:*",
     "cloudwatch:*",
+    "events:*",
     "logs:*",
     "lambda:*",
     "dynamodb:*",
     "autoscaling:Describe*",
     "elasticloadbalancing:Describe*",
     "ec2:Describe*",
-    "ec2:ModifySecurityGroupRules"
+    "ec2:ModifySecurityGroupRules",
+    "ecs:List*",
+    "ecs:Describe*"
    ],
    "Resource": "*"
   }]
@@ -81,9 +84,64 @@ iam_policies = [{
     "logs:describeSubscriptionFilters",
     "logs:filterLogEvents",
     "logs:getLogEvents",
-    "logs:testMetricFilter"
+    "logs:testMetricFilter",
+    "ec2:Describe*",
+    "ecs:List*",
+    "ecs:Describe*"
    ],
    "Resource": "*"
   }]
  }
-}]
+}, {
+  "name": "SupportAdmin",
+  "association": "SupportAdmin",
+  "policy": {
+   "Version": "2012-10-17",
+   "Statement": [{
+    "Effect": "Allow",
+    "Action": [
+     "s3:*",
+     "dynamodb:*",
+     "route53:*",
+     "cloudwatch:*",
+     "elasticloadbalancing:*",
+     "ec2:Describe*",
+     "autoscaling:Describe*",
+     "ecs:List*",
+     "ecs:Describe*"
+    ],
+    "Resource": "*"
+   }]
+  }
+ }, {
+  "name": "SupportReadOnly",
+  "association": "SupportReadOnly",
+  "policy": {
+   "Version": "2012-10-17",
+   "Statement": [{
+    "Effect": "Allow",
+    "Resource": "*",
+    "Action": [
+     "s3:Get*",
+     "s3:List*",
+     "route53:Get*",
+     "route53:List*",
+     "route53:TestDNSAnswer",
+     "logs:describeExportTasks",
+     "logs:describeLogGroups",
+     "logs:describeLogStreams",
+     "logs:describeMetricFilters",
+     "logs:describeQueryDefinitions",
+     "logs:describeSubscriptionFilters",
+     "logs:filterLogEvents",
+     "logs:getLogEvents",
+     "logs:testMetricFilter",
+     "elasticloadbalancing:Describe*",
+     "ec2:Describe*",
+     "autoscaling:Describe*",
+     "ecs:List*",
+     "ecs:Describe*"
+    ]
+   }]
+  }
+ }]
