@@ -1,4 +1,11 @@
 profile = "default"
+users2groups = [{
+ users: ["RaffaeleSuperga", "LucaTavecchia"],
+ group: "Admin"
+}, {
+ users: ["MicheleCortellini"],
+ group: "Billing"
+}]
 iam_groups = [{
  "name": "Admin",
  "policies": ["arn:aws:iam::aws:policy/AdministratorAccess"]

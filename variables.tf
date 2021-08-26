@@ -5,12 +5,12 @@ variable "region" {
 }
 
 variable "profile" {
- description = "AWS IAM user credentials"
+ description = "AWS IAM user credentials to perform stack creation & update"
  type = string
 }
 
 variable "iam_groups" {
- description = "AWS User groups"
+ description = "IAM User groups"
  type = list(object({
   name = string
   policies = list(string)
@@ -18,10 +18,18 @@ variable "iam_groups" {
 }
 
 variable "iam_policies" {
- description = "AWS User groups"
+ description = "IAM groups policies"
  type = list(object({
   name = string
   association = string
   policy = any
+ }))
+}
+
+variable "users2groups" {
+ description = "IAM users - groups association"
+ type = list(object({
+  users = list(string)
+  group = string
  }))
 }
