@@ -1,8 +1,8 @@
 ## Requirements
 
-[AWS-Credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)
-[AWS-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
-[Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- [AWS-Credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)
+- [AWS-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+- [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 #### Commands
 
