@@ -5,6 +5,18 @@ users2groups = [{
 }, {
  users: ["MicheleCortellini"],
  group: "Billing"
+}, {
+ users: ["MarcoOrizio"],
+ group: "SupportAdmin"
+}, {
+ users: ["ChiaraGiorgetti","AlessioViola"],
+ group: "ContentEdit"
+}, {
+ users: ["EmanueleRogledi","GiuseppeRinella","MatteoSinatra"],
+ group: "DevelopAdmin"
+}, {
+ users: ["systrategy"],
+ group: "InfrastructureAdmin"
 }]
 iam_groups = [{
  "name": "Admin",
@@ -26,7 +38,7 @@ iam_groups = [{
  "policies": []
 }, {
  "name": "SupportReadOnly",
- "policies": ["arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess","arn:aws:iam::aws:policy/CloudWatchEventsReadOnlyAccess"]
+ "policies": ["arn:aws:iam::aws:policy/job-function/SupportUser"]
 }, {
  "name": "ContentEdit",
  "policies": []
@@ -41,6 +53,7 @@ iam_policies = [{
    "Action": [
     "s3:*",
     "route53:*",
+    "route53domains:*",
     "cloudwatch:*",
     "events:*",
     "logs:*",
@@ -51,7 +64,8 @@ iam_policies = [{
     "ec2:Describe*",
     "ec2:ModifySecurityGroupRules",
     "ecs:List*",
-    "ecs:Describe*"
+    "ecs:Describe*",
+    "ecr:*"
    ],
    "Resource": "*"
   }]
@@ -110,7 +124,10 @@ iam_policies = [{
      "s3:*",
      "dynamodb:*",
      "route53:*",
+     "route53domains:*",
      "cloudwatch:*",
+     "logs:*",
+     "events:*",
      "elasticloadbalancing:*",
      "ec2:Describe*",
      "autoscaling:Describe*",
@@ -118,37 +135,6 @@ iam_policies = [{
      "ecs:Describe*"
     ],
     "Resource": "*"
-   }]
-  }
- }, {
-  "name": "SupportReadOnly",
-  "association": "SupportReadOnly",
-  "policy": {
-   "Version": "2012-10-17",
-   "Statement": [{
-    "Effect": "Allow",
-    "Resource": "*",
-    "Action": [
-     "s3:Get*",
-     "s3:List*",
-     "route53:Get*",
-     "route53:List*",
-     "route53:TestDNSAnswer",
-     "logs:describeExportTasks",
-     "logs:describeLogGroups",
-     "logs:describeLogStreams",
-     "logs:describeMetricFilters",
-     "logs:describeQueryDefinitions",
-     "logs:describeSubscriptionFilters",
-     "logs:filterLogEvents",
-     "logs:getLogEvents",
-     "logs:testMetricFilter",
-     "elasticloadbalancing:Describe*",
-     "ec2:Describe*",
-     "autoscaling:Describe*",
-     "ecs:List*",
-     "ecs:Describe*"
-    ]
    }]
   }
  }]
