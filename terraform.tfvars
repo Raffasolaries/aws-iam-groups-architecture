@@ -130,6 +130,13 @@ iam_policies = [{
      "events:*",
      "elasticloadbalancing:*",
      "ec2:Describe*",
+     "ec2:AuthorizeSecurityGroupIngress", 
+     "ec2:RevokeSecurityGroupIngress", 
+     "ec2:AuthorizeSecurityGroupEgress", 
+     "ec2:RevokeSecurityGroupEgress", 
+     "ec2:ModifySecurityGroupRules",
+     "ec2:UpdateSecurityGroupRuleDescriptionsIngress", 
+     "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
      "autoscaling:Describe*",
      "ecs:List*",
      "ecs:Describe*"
