@@ -58,6 +58,7 @@ iam_policies = [{
     "events:*",
     "logs:*",
     "lambda:*",
+    "apigateway:",
     "dynamodb:*",
     "autoscaling:Describe*",
     "elasticloadbalancing:Describe*",
