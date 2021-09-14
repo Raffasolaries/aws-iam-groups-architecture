@@ -69,7 +69,47 @@ iam_policies = [{
     "ecr:*"
    ],
    "Resource": "*"
-  }]
+  }, {
+   "Sid": "AllowViewAccountInfo",
+   "Effect": "Allow",
+   "Action": [
+    "iam:GetAccountPasswordPolicy",
+                "iam:GetAccountSummary"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowManageOwnPasswords",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ChangePassword",
+                "iam:GetUser"
+            ],
+            "Resource": "arn:aws:iam::*:user/${aws:username}"
+        },
+        {
+            "Sid": "AllowManageOwnAccessKeys",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateAccessKey",
+                "iam:DeleteAccessKey",
+                "iam:ListAccessKeys",
+                "iam:UpdateAccessKey"
+            ],
+            "Resource": "arn:aws:iam::*:user/${aws:username}"
+        },
+        {
+            "Sid": "AllowManageOwnSSHPublicKeys",
+            "Effect": "Allow",
+            "Action": [
+                "iam:DeleteSSHPublicKey",
+                "iam:GetSSHPublicKey",
+                "iam:ListSSHPublicKeys",
+                "iam:UpdateSSHPublicKey",
+                "iam:UploadSSHPublicKey"
+            ],
+            "Resource": "arn:aws:iam::*:user/${aws:username}"
+        }]
  }
 }, {
  "name": "ContentEdit",
