@@ -22,7 +22,15 @@ variable "iam_policies" {
  type = list(object({
   name = string
   association = string
-  policy = any
+  policy = object({
+   Version = string
+   Statement = list(object({
+    Sid = string
+    Effect = string
+    Action = list(string)
+    Resource = string
+   }))
+  })
  }))
 }
 

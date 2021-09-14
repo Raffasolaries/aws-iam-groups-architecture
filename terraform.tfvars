@@ -49,6 +49,7 @@ iam_policies = [{
  "policy": {
   "Version": "2012-10-17",
   "Statement": [{
+   "Sid": "AWSServices",
    "Effect": "Allow",
    "Action": [
     "s3:*",
@@ -74,42 +75,39 @@ iam_policies = [{
    "Effect": "Allow",
    "Action": [
     "iam:GetAccountPasswordPolicy",
-                "iam:GetAccountSummary"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "AllowManageOwnPasswords",
-            "Effect": "Allow",
-            "Action": [
-                "iam:ChangePassword",
-                "iam:GetUser"
-            ],
-            "Resource": "arn:aws:iam::*:user/${aws:username}"
-        },
-        {
-            "Sid": "AllowManageOwnAccessKeys",
-            "Effect": "Allow",
-            "Action": [
-                "iam:CreateAccessKey",
-                "iam:DeleteAccessKey",
-                "iam:ListAccessKeys",
-                "iam:UpdateAccessKey"
-            ],
-            "Resource": "arn:aws:iam::*:user/${aws:username}"
-        },
-        {
-            "Sid": "AllowManageOwnSSHPublicKeys",
-            "Effect": "Allow",
-            "Action": [
-                "iam:DeleteSSHPublicKey",
-                "iam:GetSSHPublicKey",
-                "iam:ListSSHPublicKeys",
-                "iam:UpdateSSHPublicKey",
-                "iam:UploadSSHPublicKey"
-            ],
-            "Resource": "arn:aws:iam::*:user/${aws:username}"
-        }]
+    "iam:GetAccountSummary"
+   ],
+   "Resource": "*"
+  }, {
+   "Sid": "AllowManageOwnPasswords",
+   "Effect": "Allow",
+   "Action": [
+    "iam:ChangePassword",
+    "iam:GetUser"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnAccessKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:CreateAccessKey",
+    "iam:DeleteAccessKey",
+    "iam:ListAccessKeys",
+    "iam:UpdateAccessKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnSSHPublicKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:DeleteSSHPublicKey",
+    "iam:GetSSHPublicKey",
+    "iam:ListSSHPublicKeys",
+    "iam:UpdateSSHPublicKey",
+    "iam:UploadSSHPublicKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }]
  }
 }, {
  "name": "ContentEdit",
@@ -117,12 +115,50 @@ iam_policies = [{
  "policy": {
   "Version": "2012-10-17",
   "Statement": [{
+   "Sid": "AWSServices",
    "Effect": "Allow",
    "Action": [
     "s3:*",
     "dynamodb:*"
    ],
    "Resource": "*"
+  }, {
+   "Sid": "AllowViewAccountInfo",
+   "Effect": "Allow",
+   "Action": [
+    "iam:GetAccountPasswordPolicy",
+    "iam:GetAccountSummary"
+   ],
+   "Resource": "*"
+  }, {
+   "Sid": "AllowManageOwnPasswords",
+   "Effect": "Allow",
+   "Action": [
+    "iam:ChangePassword",
+    "iam:GetUser"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnAccessKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:CreateAccessKey",
+    "iam:DeleteAccessKey",
+    "iam:ListAccessKeys",
+    "iam:UpdateAccessKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnSSHPublicKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:DeleteSSHPublicKey",
+    "iam:GetSSHPublicKey",
+    "iam:ListSSHPublicKeys",
+    "iam:UpdateSSHPublicKey",
+    "iam:UploadSSHPublicKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
   }]
  }
 }, {
@@ -131,6 +167,7 @@ iam_policies = [{
  "policy": {
   "Version": "2012-10-17",
   "Statement": [{
+   "Sid": "AWSServices",
    "Effect": "Allow",
    "Action": [
     "s3:Get*",
@@ -152,37 +189,200 @@ iam_policies = [{
     "ecs:Describe*"
    ],
    "Resource": "*"
+  }, {
+   "Sid": "AllowViewAccountInfo",
+   "Effect": "Allow",
+   "Action": [
+    "iam:GetAccountPasswordPolicy",
+    "iam:GetAccountSummary"
+   ],
+   "Resource": "*"
+  }, {
+   "Sid": "AllowManageOwnPasswords",
+   "Effect": "Allow",
+   "Action": [
+    "iam:ChangePassword",
+    "iam:GetUser"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnAccessKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:CreateAccessKey",
+    "iam:DeleteAccessKey",
+    "iam:ListAccessKeys",
+    "iam:UpdateAccessKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnSSHPublicKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:DeleteSSHPublicKey",
+    "iam:GetSSHPublicKey",
+    "iam:ListSSHPublicKeys",
+    "iam:UpdateSSHPublicKey",
+    "iam:UploadSSHPublicKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
   }]
  }
 }, {
-  "name": "SupportAdmin",
-  "association": "SupportAdmin",
-  "policy": {
-   "Version": "2012-10-17",
-   "Statement": [{
-    "Effect": "Allow",
-    "Action": [
-     "s3:*",
-     "dynamodb:*",
-     "route53:*",
-     "route53domains:*",
-     "cloudwatch:*",
-     "logs:*",
-     "events:*",
-     "elasticloadbalancing:*",
-     "ec2:Describe*",
-     "ec2:AuthorizeSecurityGroupIngress", 
-     "ec2:RevokeSecurityGroupIngress", 
-     "ec2:AuthorizeSecurityGroupEgress", 
-     "ec2:RevokeSecurityGroupEgress", 
-     "ec2:ModifySecurityGroupRules",
-     "ec2:UpdateSecurityGroupRuleDescriptionsIngress", 
-     "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
-     "autoscaling:Describe*",
-     "ecs:List*",
-     "ecs:Describe*"
-    ],
-    "Resource": "*"
-   }]
-  }
- }]
+ "name": "SupportAdmin",
+ "association": "SupportAdmin",
+ "policy": {
+  "Version": "2012-10-17",
+  "Statement": [{
+   "Sid": "AWSServices",
+   "Effect": "Allow",
+   "Action": [
+    "s3:*",
+    "dynamodb:*",
+    "route53:*",
+    "route53domains:*",
+    "cloudwatch:*",
+    "logs:*",
+    "events:*",
+    "elasticloadbalancing:*",
+    "ec2:Describe*",
+    "ec2:AuthorizeSecurityGroupIngress", 
+    "ec2:RevokeSecurityGroupIngress", 
+    "ec2:AuthorizeSecurityGroupEgress", 
+    "ec2:RevokeSecurityGroupEgress", 
+    "ec2:ModifySecurityGroupRules",
+    "ec2:UpdateSecurityGroupRuleDescriptionsIngress", 
+    "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
+    "autoscaling:Describe*",
+    "ecs:List*",
+    "ecs:Describe*"
+   ],
+   "Resource": "*"
+  }, {
+   "Sid": "AllowViewAccountInfo",
+   "Effect": "Allow",
+   "Action": [
+    "iam:GetAccountPasswordPolicy",
+    "iam:GetAccountSummary"
+   ],
+   "Resource": "*"
+  }, {
+   "Sid": "AllowManageOwnPasswords",
+   "Effect": "Allow",
+   "Action": [
+    "iam:ChangePassword",
+    "iam:GetUser"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnAccessKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:CreateAccessKey",
+    "iam:DeleteAccessKey",
+    "iam:ListAccessKeys",
+    "iam:UpdateAccessKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnSSHPublicKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:DeleteSSHPublicKey",
+    "iam:GetSSHPublicKey",
+    "iam:ListSSHPublicKeys",
+    "iam:UpdateSSHPublicKey",
+    "iam:UploadSSHPublicKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }]
+ }
+}, {
+ "name": "InfrastructureAdmin",
+ "association": "InfrastructureAdmin",
+ "policy": {
+  "Version": "2012-10-17",
+  "Statement": [{
+   "Sid": "AllowViewAccountInfo",
+   "Effect": "Allow",
+   "Action": [
+    "iam:GetAccountPasswordPolicy",
+    "iam:GetAccountSummary"
+   ],
+   "Resource": "*"
+  }, {
+   "Sid": "AllowManageOwnPasswords",
+   "Effect": "Allow",
+   "Action": [
+    "iam:ChangePassword",
+    "iam:GetUser"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnAccessKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:CreateAccessKey",
+    "iam:DeleteAccessKey",
+    "iam:ListAccessKeys",
+    "iam:UpdateAccessKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnSSHPublicKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:DeleteSSHPublicKey",
+    "iam:GetSSHPublicKey",
+    "iam:ListSSHPublicKeys",
+    "iam:UpdateSSHPublicKey",
+    "iam:UploadSSHPublicKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }]
+ }
+}, {
+ "name": "Billing",
+ "association": "Billing",
+ "policy": {
+  "Version": "2012-10-17",
+  "Statement": [{
+   "Sid": "AllowViewAccountInfo",
+   "Effect": "Allow",
+   "Action": [
+    "iam:GetAccountPasswordPolicy",
+    "iam:GetAccountSummary"
+   ],
+   "Resource": "*"
+  }, {
+   "Sid": "AllowManageOwnPasswords",
+   "Effect": "Allow",
+   "Action": [
+    "iam:ChangePassword",
+    "iam:GetUser"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnAccessKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:CreateAccessKey",
+    "iam:DeleteAccessKey",
+    "iam:ListAccessKeys",
+    "iam:UpdateAccessKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }, {
+   "Sid": "AllowManageOwnSSHPublicKeys",
+   "Effect": "Allow",
+   "Action": [
+    "iam:DeleteSSHPublicKey",
+    "iam:GetSSHPublicKey",
+    "iam:ListSSHPublicKeys",
+    "iam:UpdateSSHPublicKey",
+    "iam:UploadSSHPublicKey"
+   ],
+   "Resource": "arn:aws:iam::*:user/$${aws:username}"
+  }]
+ }
+}]
