@@ -61,6 +61,7 @@ iam_policies = [{
     "lambda:*",
     "apigateway:",
     "dynamodb:*",
+    "acm:*",
     "autoscaling:Describe*",
     "elasticloadbalancing:Describe*",
     "ec2:Describe*",
