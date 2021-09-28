@@ -52,6 +52,7 @@ iam_policies = [{
    "Sid": "AWSServices",
    "Effect": "Allow",
    "Action": [
+    "iam:PassRole",
     "s3:*",
     "route53:*",
     "route53domains:*",
@@ -172,6 +173,7 @@ iam_policies = [{
    "Sid": "AWSServices",
    "Effect": "Allow",
    "Action": [
+    "iam:PassRole",
     "s3:Get*",
     "s3:List*",
     "route53:Get*",
@@ -239,6 +241,7 @@ iam_policies = [{
    "Sid": "AWSServices",
    "Effect": "Allow",
    "Action": [
+    "iam:PassRole",
     "s3:*",
     "dynamodb:*",
     "route53:*",
@@ -308,6 +311,7 @@ iam_policies = [{
    "Sid": "AllowViewAccountInfo",
    "Effect": "Allow",
    "Action": [
+    "iam:PassRole",
     "iam:GetAccountPasswordPolicy",
     "iam:GetAccountSummary"
    ],
